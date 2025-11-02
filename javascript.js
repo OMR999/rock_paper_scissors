@@ -1,3 +1,5 @@
+let 
+
 //return random string "rock" / paper /scissors
 function get_computer_choice() {
   // get a random value from 1 to 3
@@ -10,4 +12,9 @@ function get_computer_choice() {
   if (r_0to99 > 66 && r_0to99 <= 99) return "scissors";
 }
 
-console.log(get_computer_choice());
+function get_human_choice() {
+  return prompt("please choose you RPS:");
+}
+
+console.log(get_human_choice());
+get_computer_choice();
