@@ -38,4 +38,17 @@ function play_round(human_choice, computer_choice) {
   }
 }
 
-play_round(get_human_choice(),get_computer_choice());
+function play_game() {
+  for (i = 0; i < 5; i++) {
+    play_round(get_human_choice(), get_computer_choice());
+    console.log(
+      `Your Score is: ${humanScore}\nComputer Score is: ${computerScore}`
+    );
+  }
+  if (humanScore > computerScore) console.log("YOU WIN");
+  else console.log("YOU LOSE");
+}
+
+play_game();
+
+// play_round(get_human_choice(),get_computer_choice());
