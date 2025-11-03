@@ -1,5 +1,5 @@
-let 
-
+let humanScore = 0,
+  computerScore = 0;
 //return random string "rock" / paper /scissors
 function get_computer_choice() {
   // get a random value from 1 to 3
@@ -16,5 +16,26 @@ function get_human_choice() {
   return prompt("please choose you RPS:");
 }
 
-console.log(get_human_choice());
-get_computer_choice();
+function play_round(human_choice, computer_choice) {
+  human_choice = human_choice.toLowerCase();
+
+  if (computer_choice == human_choice) {
+    console.log("DRAW: both are " + computer_choice.toUpperCase());
+  } else if (
+    (computer_choice == "rock" && human_choice == "scissors") ||
+    (computer_choice == "paper" && human_choice == "rock") ||
+    (computer_choice == "scissors" && human_choice == "paper")
+  ) {
+    console.log(
+      `YOU LOSE: ${computer_choice.toUpperCase()} beats ${human_choice.toUpperCase()}`
+    );
+    computerScore++;
+  } else {
+    console.log(
+      `YOU WIN: ${human_choice.toUpperCase()} beats ${computer_choice.toUpperCase()}`
+    );
+    humanScore++;
+  }
+}
+
+play_round(get_human_choice(),get_computer_choice());
