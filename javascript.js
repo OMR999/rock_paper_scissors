@@ -30,14 +30,18 @@ function play_round(human_choice, computer_choice) {
   }
   if (humanScore == 5) {
     resultScreen.textContent = `YOU WIN`;
+    computerScore = 0;
+    humanScore = 0;
   }
   if (computerScore == 5) {
     resultScreen.textContent = `YOU LOSE`;
+    computerScore = 0;
+    humanScore = 0;
   }
 }
 
 const resultScreen = document.querySelector("div");
-resultScreen.style.whiteSpace = "pre-wrap"
+resultScreen.style.whiteSpace = "pre-wrap";
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
