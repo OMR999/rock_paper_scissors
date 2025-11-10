@@ -59,3 +59,5 @@ paperBtn.addEventListener("click", () => {
 scissorsBtn.addEventListener("click", () => {
   play_round("scissors", get_computer_choice());
 });
+
+//test some git knowledge
