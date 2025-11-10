@@ -12,40 +12,33 @@ function get_computer_choice() {
   if (r_0to99 == 2) return "scissors";
 }
 
-function get_human_choice() {
-  return prompt("please choose you RPS:");
-}
-
 function play_round(human_choice, computer_choice) {
   computer_choice = computer_choice.toUpperCase();
   human_choice = human_choice.toUpperCase();
   if (computer_choice == human_choice) {
-    console.log("DRAW: both are " + computer_choice);
+    resultScreen.textContent = `DRAW: both are ${computer_choice}\nCOM: ${computerScore} | YOU: ${humanScore}`;
   } else if (
     (computer_choice == "ROCK" && human_choice == "SCISSORS") ||
     (computer_choice == "PAPER" && human_choice == "ROCK") ||
     (computer_choice == "SCISSORS" && human_choice == "PAPER")
   ) {
-    console.log(`YOU LOSE: ${computer_choice} beats ${human_choice}`);
     computerScore++;
+    resultScreen.textContent = `YOU LOSE: ${computer_choice} beats ${human_choice}\nCOM: ${computerScore} | YOU: ${humanScore}`;
   } else {
-    console.log(`YOU WIN: ${human_choice} beats ${computer_choice}`);
     humanScore++;
+    resultScreen.textContent = `YOU WIN: ${human_choice} beats ${computer_choice}\nCOM: ${computerScore} | YOU: ${humanScore}`;
   }
-  console.log(`com: ${computerScore} | you: ${humanScore}`);
+  if (humanScore == 5) {
+    resultScreen.textContent = `YOU WIN`;
+  }
+  if (computerScore == 5) {
+    resultScreen.textContent = `YOU LOSE`;
+  }
 }
 
-// // function play_game() {
-// //   for (i = 0; i < 5; i++) {
-// //     play_round(get_human_choice(), get_computer_choice());
-// //     console.log(
-// //       `Your Score is: ${humanScore}\nComputer Score is: ${computerScore}`
-// //     );
-// //   }
-// //   if (humanScore > computerScore) console.log("YOU WIN");
-// //   else console.log("YOU LOSE");
-// // }
-// play_game();
+const resultScreen = document.querySelector("div");
+resultScreen.style.whiteSpace = "pre-wrap"
+
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
