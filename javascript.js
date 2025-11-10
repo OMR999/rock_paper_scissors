@@ -6,10 +6,10 @@ let humanScore = 0,
 function get_computer_choice() {
   // get a random value from 1 to 3
 
-  let r_0to99 = parseInt(Math.random() * 100);
-  if (r_0to99 >= 0 && r_0to99 < 33) return "rock";
-  if (r_0to99 >= 33 && r_0to99 <= 66) return "paper";
-  if (r_0to99 > 66 && r_0to99 <= 99) return "scissors";
+  let r_0to99 = Math.floor(Math.random() * 3);
+  if (r_0to99 == 0) return "rock";
+  if (r_0to99 == 1) return "paper";
+  if (r_0to99 == 2) return "scissors";
 }
 
 function get_human_choice() {
@@ -17,36 +17,48 @@ function get_human_choice() {
 }
 
 function play_round(human_choice, computer_choice) {
-  human_choice = human_choice.toLowerCase();
-
+  computer_choice = computer_choice.toUpperCase();
+  human_choice = human_choice.toUpperCase();
   if (computer_choice == human_choice) {
-    console.log("DRAW: both are " + computer_choice.toUpperCase());
+    console.log("DRAW: both are " + computer_choice);
   } else if (
-    (computer_choice == "rock" && human_choice == "scissors") ||
-    (computer_choice == "paper" && human_choice == "rock") ||
-    (computer_choice == "scissors" && human_choice == "paper")
+    (computer_choice == "ROCK" && human_choice == "SCISSORS") ||
+    (computer_choice == "PAPER" && human_choice == "ROCK") ||
+    (computer_choice == "SCISSORS" && human_choice == "PAPER")
   ) {
-    console.log(
-      `YOU LOSE: ${computer_choice.toUpperCase()} beats ${human_choice.toUpperCase()}`
-    );
+    console.log(`YOU LOSE: ${computer_choice} beats ${human_choice}`);
     computerScore++;
   } else {
-    console.log(
-      `YOU WIN: ${human_choice.toUpperCase()} beats ${computer_choice.toUpperCase()}`
-    );
+    console.log(`YOU WIN: ${human_choice} beats ${computer_choice}`);
     humanScore++;
   }
+  console.log(`com: ${computerScore} | you: ${humanScore}`);
 }
 
-function play_game() {
-  for (i = 0; i < 5; i++) {
-    play_round(get_human_choice(), get_computer_choice());
-    console.log(
-      `Your Score is: ${humanScore}\nComputer Score is: ${computerScore}`
-    );
-  }
-  if (humanScore > computerScore) console.log("YOU WIN");
-  else console.log("YOU LOSE");
-}
+// // function play_game() {
+// //   for (i = 0; i < 5; i++) {
+// //     play_round(get_human_choice(), get_computer_choice());
+// //     console.log(
+// //       `Your Score is: ${humanScore}\nComputer Score is: ${computerScore}`
+// //     );
+// //   }
+// //   if (humanScore > computerScore) console.log("YOU WIN");
+// //   else console.log("YOU LOSE");
+// // }
+// play_game();
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
 
-play_game();
+rockBtn.style.backgroundColor = "blue";
+scissorsBtn.style.backgroundColor = "red";
+
+rockBtn.addEventListener("click", () => {
+  play_round("rock", get_computer_choice());
+});
+paperBtn.addEventListener("click", () => {
+  play_round("paper", get_computer_choice());
+});
+scissorsBtn.addEventListener("click", () => {
+  play_round("scissors", get_computer_choice());
+});
