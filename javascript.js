@@ -28,16 +28,24 @@ function play_round(human_choice, computer_choice) {
     humanScore++;
     resultScreen.textContent = `YOU WIN: ${human_choice} beats ${computer_choice}\nCOM: ${computerScore} | YOU: ${humanScore}`;
   }
-  if (humanScore == 5) {
-    resultScreen.textContent = `YOU WIN`;
+  if (humanScore == 5 || computerScore == 5) {
+    if (humanScore == 5) resultScreen.textContent = `YOU WIN`;
+    if (computerScore == 5) resultScreen.textContent = `YOU LOSE`;
     computerScore = 0;
     humanScore = 0;
+    rockBtn.removeEventListener("click", rockPress);
+    paperBtn.removeEventListener("click", paperPress);
+    scissorsBtn.removeEventListener("click", scissorsPress);
   }
-  if (computerScore == 5) {
-    resultScreen.textContent = `YOU LOSE`;
-    computerScore = 0;
-    humanScore = 0;
-  }
+}
+function rockPress() {
+  play_round("rock", get_computer_choice());
+}
+function paperPress() {
+  play_round("paper", get_computer_choice());
+}
+function scissorsPress() {
+  play_round("scissors", get_computer_choice());
 }
 
 const resultScreen = document.querySelector("div");
@@ -47,17 +55,9 @@ const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
 
-rockBtn.style.backgroundColor = "blue";
-scissorsBtn.style.backgroundColor = "red";
+scissorsBtn.style.backgroundColor = "blue";
+rockBtn.style.backgroundColor = "red";
 
-rockBtn.addEventListener("click", () => {
-  play_round("rock", get_computer_choice());
-});
-paperBtn.addEventListener("click", () => {
-  play_round("paper", get_computer_choice());
-});
-scissorsBtn.addEventListener("click", () => {
-  play_round("scissors", get_computer_choice());
-});
-
-//test some git knowledge
+rockBtn.addEventListener("click", rockPress);
+paperBtn.addEventListener("click", paperPress);
+scissorsBtn.addEventListener("click", scissorsPress);
